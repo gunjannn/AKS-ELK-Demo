@@ -12,7 +12,7 @@ node {
     client_secret = var.client_secret
 
   stage('SCM Checkout & cloning'){
-    git url:  'https://github.com/gunjannn/c-i.git',branch: 'master'
+    git url:  'https://github.com/gunjannn/AKS-ELK-Demo.git',branch: 'master'
 }
 
   stage('Setterraformpath') {
