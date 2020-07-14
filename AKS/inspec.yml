@@ -1,0 +1,14 @@
+name: AKS
+title: InSpec Profile
+maintainer: The Authors
+copyright: The Authors
+copyright_email: you@example.com
+license: Apache-2.0
+summary: An InSpec Compliance Profile
+version: 0.1.0
+inspec_version: '>= 4.21.1'
+depends:
+  - name: inspec-azure
+    git: https://github.com/inspec/inspec-azure.git
+supports:
+  platform: azure
