@@ -29,8 +29,8 @@ node {
     /*withCredentials([azureServicePrincipal('az')]) {*/
       sh "terraform init -input=false"
       sh "terraform validate"
-      sh "terraform plan -out=tfplan -input=false"
-      sh "terraform apply -input=false tfplan"
+      sh "terraform plan -out=tfplan -input=false -var-file=variables.tf"
+      sh "terraform apply -input=false tfplan -var-files=variables.tf"
 }
   stage('InfraTesting') {
     withCredentials([azureServicePrincipal('az')]) {
