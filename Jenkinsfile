@@ -4,13 +4,13 @@ node {
     password (name: 'client_id')
     password (name: 'client_secret')
     password (name: 'tenant_id')
-  }
+  }*/
   environment{
-    AZURE_SUBSCRIPTION_ID = "${params.subscription_id}"
-    AZURE_CLIENT_ID = "${params.client_id}"
-    AZURE_TENANT_ID = "${params.tenant_id}"
-    AZURE_CLIENT_SECRET = "${params.client_secret}"
-}*/
+    AZURE_SUBSCRIPTION_ID = var.subscription_id
+    AZURE_CLIENT_ID = var.client_id
+    AZURE_TENANT_ID = var.tenant_id
+    AZURE_CLIENT_SECRET = var.client_secret
+
   stage('SCM Checkout & cloning'){
     git url:  'https://github.com/gunjannn/c-i.git',branch: 'master'
 }
@@ -29,8 +29,8 @@ node {
     /*withCredentials([azureServicePrincipal('az')]) {*/
       sh "terraform init -input=false"
       sh "terraform validate"
-      sh 'terraform plan -out=tfplan -input=false -var-file=terraform.tfvars'
-      sh "terraform apply -input=false tfplan -var-file=terraform.tfvars"
+      sh "terraform plan -out=tfplan -input=false"
+      sh "terraform apply -input=false tfplan"
 }
   stage('InfraTesting') {
     withCredentials([azureServicePrincipal('az')]) {
