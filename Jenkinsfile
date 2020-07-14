@@ -31,7 +31,7 @@ node {
       sh "terraform validate"
       sh 'terraform plan -out=tfplan -input=false -var-file=terraform.tfvars'
       sh "terraform apply -input=false tfplan -var-file=terraform.tfvars"
-	}
+}
   stage('InfraTesting') {
     withCredentials([azureServicePrincipal('az')]) {
       sh "inspec exec AKS -t azure://64b70538-bc40-4492-9c4b-13f8b43e732d"
