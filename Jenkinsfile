@@ -10,7 +10,7 @@ node {
     client_id = var.client_id
     tenant_id = var.tenant_id
     client_secret = var.client_secret
-
+  }
   stage('SCM Checkout & cloning'){
     git url:  'https://github.com/gunjannn/AKS-ELK-Demo.git',branch: 'master'
 }
@@ -38,7 +38,7 @@ node {
 }
 }	
 }
-}
+
 
 
 /*node {
