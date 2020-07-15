@@ -1,4 +1,11 @@
 node {
+   withCredentials([azureServicePrincipal(credentialsId: 'az',
+                                    subscriptionIdVariable: 'subscription_id',
+                                    clientIdVariable: 'client_id',
+                                    clientSecretVariable: 'client_secret',
+                                    tenantIdVariable: 'tenant_id')]) {
+    sh 'az login --service-principal -u $client_id -p $client_secret -t $tenant_id'
+}
   stage('TerraformApply'){
     git url:  'https://github.com/gunjannn/AKS-ELK-Demo.git',branch: 'master'
   script {
@@ -7,7 +14,7 @@ node {
     sh 'terraform version'
     sh "terraform init -input=false"
     sh "terraform validate"
-    sh "terraform plan -out=tfplan -input=false -var-file=var_values.tfvars"
+    sh "terraform plan -var='client_id=$client_id' -var='subscription_id=$subscription_id' -var='client_secret=$client_secret' -var='tenant_id=$tenant_id' -out=tfplan -input=false"
     sh "terraform apply -input=false tfplan"
 }
   
