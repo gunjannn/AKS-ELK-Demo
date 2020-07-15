@@ -13,7 +13,7 @@ node {
   
   stage('InfraTesting') {
     withCredentials([azureServicePrincipal('az')]) {
-      sh "inspec exec AKS -t azure://64b70538-bc40-4492-9c4b-13f8b43e732d"
+      sh "inspec exec AKS -t azure://"
 }
 }
 }
