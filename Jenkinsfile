@@ -5,18 +5,18 @@ node {
     password (name: 'client_secret')
     password (name: 'tenant_id')
   }*/
-  environment{
+  /*environment{
     subscription_id = var.subscription_id
     client_id = var.client_id
     tenant_id = var.tenant_id
     client_secret = var.client_secret
-  }
+  }*/
   stage('SCM Checkout & cloning'){
     git url:  'https://github.com/gunjannn/AKS-ELK-Demo.git',branch: 'master'
 }
 
   stage('Setterraformpath') {
-    /*withCredentials([azureServicePrincipal('az')]) {*/
+    withCredentials([azureServicePrincipal('az')]) {
     script {
       def tfHome = tool name: 'terraform'
       env.PATH = "${tfHome}:${env.PATH}"
@@ -26,7 +26,7 @@ node {
            
       
   stage('TerraformApply') {
-    /*withCredentials([azureServicePrincipal('az')]) {*/
+    withCredentials([azureServicePrincipal('az')]) {
       sh "terraform init -input=false"
       sh "terraform validate"
       sh "terraform plan -out=tfplan -input=false -var-file=var_values.tfvars"
