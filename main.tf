@@ -34,9 +34,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     Terraform = "True"
   }
   
- 
- output "env-dynamic-url"{ 
-     "value = azurerm_kubernetes_cluster.main.kube_config.0.host"
+  {
+ output "env-dynamic-url"
+   value = azurerm_kubernetes_cluster.main.kube_config.0.host
 }
   }
   
