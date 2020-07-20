@@ -27,6 +27,9 @@ node {
     withCredentials([azureServicePrincipal('az')]) {
       sh "inspec exec AKS -t azure://"
 }
+  stage 'post-build' {
+    build job: 'ELK'
+}
 }
 }
 }
