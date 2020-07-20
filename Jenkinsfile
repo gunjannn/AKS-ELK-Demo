@@ -28,6 +28,9 @@ node {
       sh "inspec exec AKS -t azure://"
 }
   stage('post-build') {
+    build 'SnykCli'
+}
+ stage('post-build') {
     build 'ELK'
 }
 }
