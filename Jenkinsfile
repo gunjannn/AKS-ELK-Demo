@@ -28,9 +28,9 @@ node {
     withCredentials([azureServicePrincipal('az')]) {
       sh "inspec exec AKS -t azure://"
 }
-  stage('post-build') {
+ /* stage('post-build') {
     build 'SnykCli'
-}
+}*/
   stage('Snyk') {
     build 'SnykConsole'
 }
