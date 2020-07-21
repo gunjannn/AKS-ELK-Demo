@@ -5,6 +5,7 @@ node {
                                     clientSecretVariable: 'client_secret',
                                     tenantIdVariable: 'tenant_id')]) {
     sh 'az login --service-principal -u $client_id -p $client_secret -t $tenant_id'
+    sh 'whoami'
 }
   stage('TerraformApply'){
     git url:  'https://github.com/gunjannn/AKS-ELK-Demo.git',branch: 'master'
@@ -40,9 +41,10 @@ node {
 }*/
     stage('Preparation') { // for display purposes
        
-        sh "az aks get-credentials --resource-group azkubernetes --name gitops-demo-aks"
+       
         sh "pwd"
         sh "whoami"
+        sh "az aks get-credentials --resource-group azkubernetes --name gitops-demo-aks"
         sh "/snap/bin/kubectl version --short --client"
         sh "/snap/bin/kubectl get nodes"
     }
