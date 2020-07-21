@@ -30,11 +30,12 @@ node {
   stage('post-build') {
     build 'SnykCli'
 }
-  stage('post-build') {
+  stage('Snyk') {
     build 'SnykConsole'
 }
-
- stage('post-build') {
+ 
+ stage('ELK') {
+    
     build 'ELK'
 }
 }
