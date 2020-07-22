@@ -7,7 +7,7 @@ node {
     sh 'az login --service-principal -u $client_id -p $client_secret -t $tenant_id'
     sh 'whoami'
 }
-  stage('TerraformApply'){
+  stage('InfraAutomation'){
     git url:  'https://github.com/gunjannn/AKS-ELK-Demo.git',branch: 'master'
   script {
     def tfHome = tool name: 'terraform'
@@ -31,7 +31,7 @@ node {
  /* stage('post-build') {
     build 'SnykCli'
 }*/
-  stage('Snyk') {
+  stage('DAST') {
     build 'SnykConsole'
 }
  
@@ -39,7 +39,7 @@ node {
     
     build 'ELK'
 }*/
-    stage('Preparation') { // for display purposes
+    stage('Caac') { // for display purposes
        
        
         sh "pwd"
