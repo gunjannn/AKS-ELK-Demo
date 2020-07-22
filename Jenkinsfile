@@ -39,7 +39,7 @@ node {
     
     build 'ELK'
 }*/
-    stage('Caac') { // for display purposes
+    stage('Preparation for ELK stack') { // for display purposes
        
        
         sh "pwd"
